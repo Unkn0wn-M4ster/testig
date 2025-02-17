@@ -70,7 +70,7 @@ export default function Home() {
       
       <div className={`${geistSans.variable} min-h-[200vh] bg-[#111111] ${loading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
         {/* Header */}
-        <header className="container mx-auto px-8 py-8">
+        <header className="container mx-auto px-8 py-4">
           <Image
             src="/logo12.png"
             alt="Tribbe Logo"
@@ -83,9 +83,9 @@ export default function Home() {
 
         {/* Main Content */}
         <main className="container mx-auto px-8">
-          <div className="grid md:grid-cols-2 gap-24 items-center min-h-[calc(100vh-140px)]">
+          <div className="grid md:grid-cols-2 gap-24 items-center min-h-[calc(90vh-140px)]">
             {/* Left Column */}
-            <div ref={contentRef} className="max-w-xl pt-12">
+            <div ref={contentRef} className="max-w-xl pt-6">
               <h2 className="text-base text-primary-orange mb-8">— Coming Soon</h2>
               <h1 className="text-7xl font-bold mb-14 text-white leading-[1.1]">
                 Get Notified
@@ -116,14 +116,14 @@ export default function Home() {
               <div className="flex space-x-6">
                 {[
                   { name: 'github', icon: '/social/github.png' },
-                  { name: 'twitter', icon: '/social/X.png' },
-                  { name: 'instagram', icon: '/social/instagram.svg' },
-                  { name: 'youtube', icon: '/social/youtube.svg' }
+                  { name: 'twitter', icon: '/social/x.png' },
+                  { name: 'instagram', icon: '/social/gmail.png' },
+                  { name: 'youtube', icon: '/social/link.png' }
                 ].map((social) => (
                   <a
                     key={social.name}
                     href={`#${social.name}`}
-                    className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center
+                    className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center
                               hover:border-primary-orange hover:bg-primary-orange/5 transform hover:scale-110
                               transition-all duration-300 group"
                   >
@@ -141,14 +141,85 @@ export default function Home() {
 
             {/* Right Column - Mockups */}
             <div ref={mockupsRef} className="relative hidden md:block">
-              <div className="relative w-[650px] h-[600px]">
+              <div className="flex space-x-8">
+                {/* Pre-registration Stats Card */}
+                <div className="flex flex-col space-y-8">
+                  <div className="mockup-card w-[300px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-xl p-5 border border-white/10
+                                hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/20">
+                    <div className="flex items-center space-x-4 mb-5">
+                      <div className="w-12 h-12 rounded-full bg-primary-orange/20 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-primary-orange animate-pulse"></div>
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">Pre-registrations</div>
+                        <div className="text-sm text-primary-orange">1,234 people joined</div>
+                      </div>
+                    </div>
+                    
+                    {/* Recent Comment */}
+                    <div className="bg-white/5 rounded-xl p-4 mb-4">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                        <div>
+                          <div className="text-sm text-white">Sarah K.</div>
+                          <div className="text-xs text-gray-400">2 hours ago</div>
+                        </div>
+                      </div>
+                      <p className="text-sm text-white/80">
+                        "Can't wait for the launch! The preview looks amazing! 🚀"
+                      </p>
+                    </div>
+
+                    {/* Quick Stats */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-white/5 rounded-lg p-3">
+                        <div className="text-xs text-gray-400 mb-1">Daily Signups</div>
+                        <div className="text-lg text-white font-medium">+127</div>
+                      </div>
+                      <div className="bg-white/5 rounded-lg p-3">
+                        <div className="text-xs text-gray-400 mb-1">Engagement</div>
+                        <div className="text-lg text-white font-medium">94%</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Milestones Card */}
+                  <div className="mockup-card w-[300px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-xl p-5 border border-white/10
+                                hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/20">
+                    <div className="text-white font-medium mb-4">Project Milestones</div>
+                    <div className="space-y-4">
+                      {[
+                        { label: 'Design', progress: 90, color: '#22C55E' },  // Green
+                        { label: 'Testing', progress: 45, color: '#EAB308' }, // Yellow
+                        { label: 'Launch', progress: 25, color: '#EC4899' }   // Pink
+                      ].map((item, i) => (
+                        <div key={i} className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span className="text-white/80">{item.label}</span>
+                            <span className="text-white/60">{item.progress}%</span>
+                          </div>
+                          <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full rounded-full transition-all duration-500"
+                              style={{ 
+                                width: `${item.progress}%`,
+                                backgroundColor: item.color,
+                                boxShadow: `0 0 10px ${item.color}40`
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
                 {/* Main Product Card */}
-                <div className="mockup-card absolute top-[-20px] right-0 w-[440px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/10
+                <div className="mockup-card w-[440px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/10
                               hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/20">
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <div className="text-xs text-white/60">9:41</div>
-                      <div className="text-xs text-white/60">Product Preview</div>
+                      <div className="text-xs text-white/60 p-4">9:41</div>
+                      <div className="text-xs text-white/60 p-4 ">Product Preview</div>
                     </div>
                     <div className="h-[340px] rounded-xl mb-6 overflow-hidden bg-white/5">
                       <Image
@@ -159,82 +230,12 @@ export default function Home() {
                         className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center p-4">
                       <span className="text-white font-medium text-lg">$45.99</span>
                       <button className="bg-primary-orange px-6 py-3 rounded-full text-sm text-white hover:bg-primary-orange/90 transition-colors font-medium">
                         Add to Cart
                       </button>
                     </div>
-                  </div>
-                </div>
-
-                {/* Pre-registration Stats Card */}
-                <div className="mockup-card absolute top-[340px] right-[40px] w-[300px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-xl p-5 border border-white/10
-                              hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/20">
-                  <div className="flex items-center space-x-4 mb-5">
-                    <div className="w-12 h-12 rounded-full bg-primary-orange/20 flex items-center justify-center">
-                      <div className="w-6 h-6 rounded-full bg-primary-orange animate-pulse"></div>
-                    </div>
-                    <div>
-                      <div className="text-white font-medium">Pre-registrations</div>
-                      <div className="text-sm text-primary-orange">1,234 people joined</div>
-                    </div>
-                  </div>
-                  
-                  {/* Recent Comment */}
-                  <div className="bg-white/5 rounded-xl p-4 mb-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"></div>
-                      <div>
-                        <div className="text-sm text-white">Sarah K.</div>
-                        <div className="text-xs text-gray-400">2 hours ago</div>
-                      </div>
-                    </div>
-                    <p className="text-sm text-white/80">
-                      "Can't wait for the launch! The preview looks amazing! 🚀"
-                    </p>
-                  </div>
-
-                  {/* Quick Stats */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white/5 rounded-lg p-3">
-                      <div className="text-xs text-gray-400 mb-1">Daily Signups</div>
-                      <div className="text-lg text-white font-medium">+127</div>
-                    </div>
-                    <div className="bg-white/5 rounded-lg p-3">
-                      <div className="text-xs text-gray-400 mb-1">Engagement</div>
-                      <div className="text-lg text-white font-medium">94%</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Milestones Card */}
-                <div className="mockup-card absolute bottom-[40px] right-[220px] w-[240px] bg-[#1A1A1A]/80 backdrop-blur-lg rounded-xl p-5 border border-white/10
-                              hover:border-white/20 transition-all duration-300 shadow-lg shadow-black/20">
-                  <div className="text-white font-medium mb-4">Project Milestones</div>
-                  <div className="space-y-4">
-                    {[
-                      { label: 'Design', progress: 90, color: '#22C55E' },  // Green
-                      { label: 'Testing', progress: 45, color: '#EAB308' }, // Yellow
-                      { label: 'Launch', progress: 25, color: '#EC4899' }   // Pink
-                    ].map((item, i) => (
-                      <div key={i} className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-white/80">{item.label}</span>
-                          <span className="text-white/60">{item.progress}%</span>
-                        </div>
-                        <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full rounded-full transition-all duration-500"
-                            style={{ 
-                              width: `${item.progress}%`,
-                              backgroundColor: item.color,
-                              boxShadow: `0 0 10px ${item.color}40`
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
