@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #111111;
+  --foreground: #ededed;
+  --primary-orange: #FF4500;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans);
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-white to-[#FF4500] bg-clip-text text-transparent;
+  }
+  
+  .flame {
+    @apply absolute w-[60px] h-[60px] rounded-full blur-xl opacity-60 bg-[#FF4500];
+  }
+}
+
+@layer utilities {
+  .flame-glow {
+    box-shadow: 0 0 40px rgba(255, 69, 0, 0.3);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF4500;
+  border-radius: 4px;
+}
+
+/* Custom input autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #111111 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Add to your existing styles */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.mockup-container:hover .mockup-card:not(:hover) {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.mockup-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.mockup-card:hover {
+  transform: scale(1.02);
+  z-index: 10;
+}
